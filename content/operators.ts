@@ -17,7 +17,7 @@ export const operators: Operator[] = [
     name: 'Simon Shellien',
     role: 'Strategy, brand, operations & growth',
     roleShort: 'Strategy · Brand · Operations',
-    bio: 'Twenty years across UK and MENA. Operator across consumer technology, sport, luxury, and real estate. Architect of the firm's operating model and client delivery infrastructure.',
+    bio: "Twenty years across UK and MENA. Operator across consumer technology, sport, luxury, and real estate. Architect of the firm's operating model and client delivery infrastructure.",
     longBio: [
       'Twenty years operating across the United Kingdom and the Middle East. Strategy and execution for founders and institutions, with an emphasis on systems that hold their shape as the business scales.',
       'Earlier engagements have spanned consumer technology, sport, luxury, and real estate — selected work with Under Armour, NEOM, Emirates, and Adidas. The discipline has been consistent across each: arrive into a business, understand it as an operator would, design the system, and stay long enough to see it work.',
