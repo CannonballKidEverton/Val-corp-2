@@ -1,88 +1,50 @@
-.zone {
-  padding: 12vh var(--margin) 14vh;
-}
+import { ArrivalWrapper } from '@/components/primitives/ArrivalWrapper';
+import { SectionHead } from '@/components/primitives/SectionHead';
+import { intelligenceSystems } from '@/content/intelligence';
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--hairline);
-}
+export function IntelligenceZone() {
+  return (
+    <section id="intelligence">
+      <ArrivalWrapper as="div" className="zone-pad">
+        <SectionHead
+          title="Intelligence Systems"
+          counter={`${intelligenceSystems.length} systems`}
+        />
 
-.module {
-  padding: 40px 32px 36px;
-  border-right: 1px solid var(--hairline);
-}
+        <div className="grid grid-cols-1 border-t border-[var(--hairline)] md:grid-cols-2 xl:grid-cols-4">
+          {intelligenceSystems.map((system) => (
+            <article
+              key={system.ref}
+              className="border-b border-[var(--hairline)] py-9 pr-8 md:border-r xl:border-b-0"
+            >
+              <div className="mb-5 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-3)]">
+                {system.ref}
+              </div>
 
-.module:first-child {
-  padding-left: 0;
-}
+              <h3 className="mb-4 text-[clamp(1.15rem,1.6vw,1.5rem)] font-medium leading-tight tracking-[-0.015em] text-[var(--text)]">
+                {system.name}
+              </h3>
 
-.module:last-child {
-  padding-right: 0;
-  border-right: none;
-}
+              <p className="mb-6 max-w-[36ch] font-serif text-[clamp(0.95rem,1.05vw,1.05rem)] leading-[1.6] text-[var(--text-2)]">
+                {system.description}
+              </p>
 
-.num {
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-4);
-  display: block;
-  margin-bottom: 18px;
-}
-
-.name {
-  font-family: var(--font-sans), sans-serif;
-  font-weight: 500;
-  font-size: clamp(1.15rem, 1.6vw, 1.5rem);
-  letter-spacing: -0.015em;
-  color: var(--text);
-  line-height: 1.05;
-  margin-bottom: 18px;
-}
-
-.desc {
-  font-family: var(--font-serif), serif;
-  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
-  line-height: 1.6;
-  color: var(--text-2);
-  margin-bottom: 28px;
-  max-width: 36ch;
-}
-
-.meta {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  font-family: var(--font-mono), monospace;
-}
-
-.meta dt {
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-4);
-  margin-bottom: 4px;
-}
-
-.meta dd {
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--text-2);
-}
-
-@media (max-width: 960px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-  .module {
-    border-right: none;
-    border-top: 1px solid var(--hairline);
-    padding: 32px 0;
-  }
-  .module:first-child {
-    border-top: none;
-    padding-top: 32px;
-  }
+              <dl className="space-y-3 font-mono">
+                {system.meta.map((item) => (
+                  <div key={item.label}>
+                    <dt className="mb-1 text-[10px] uppercase tracking-[0.22em] text-[var(--text-3)]">
+                      {item.label}
+                    </dt>
+                    <dd className="text-[12px] tracking-[0.06em] text-[var(--text-2)]">
+                      {item.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
+          ))}
+        </div>
+      </ArrivalWrapper>
+    </section>
+  );
 }
