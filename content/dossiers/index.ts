@@ -6,8 +6,9 @@ export interface DossierSection {
 
 export interface Dossier {
   slug: string;
- ref: string;
+  ref: string;
   title: string;
+  subtitle: string;
   description: string;
   sections: DossierSection[];
 }
@@ -17,6 +18,7 @@ export const dossiers: Dossier[] = [
     slug: "risk-engine",
     ref: "D/01",
     title: "The Risk Engine",
+    subtitle: "A continuous operational scoring system across twelve weighted domains.",
     description:
       "A continuous operational scoring system across twelve weighted domains.",
     sections: [
