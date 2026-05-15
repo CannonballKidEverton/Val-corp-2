@@ -5,37 +5,35 @@ import { operators } from '@/content/operators';
 
 export function PartnersZone() {
   return (
-    <ArrivalWrapper as="section" className="zone-pad" id="partners">
-      <SectionHead
-        title="Founding Partners"
-        counter="Three principals · Founded 2024"
-      />
-      <div className="grid grid-cols-1 md:grid-cols-3 border-t border-hairline border-b border-hairline">
-        {operators.map((op, i) => (
-          <Link
-            key={op.slug}
-            href={`/operators/${op.slug}`}
-            className={[
-              'group flex flex-col min-h-[220px]',
-              'py-11 pr-8 no-underline text-inherit',
-              i > 0 ? 'md:border-l border-hairline md:pl-8' : '',
-              i < operators.length - 1 ? 'border-b md:border-b-0 border-hairline' : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
-          >
-            <span className="t-name text-ink mb-[18px] transition-colors duration-moderate group-hover:text-accent">
-              {op.name}
-            </span>
-            <span className="font-serif italic text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.45] text-ink-strong max-w-[30ch]">
-              {op.role}
-            </span>
-            <span className="t-label text-ink-3 mt-auto pt-8 group-hover:text-ink transition-colors duration-moderate">
-              Profile →
-            </span>
-          </Link>
-        ))}
-      </div>
-    </ArrivalWrapper>
+    <section id="partners">
+      <ArrivalWrapper as="div" className="zone-pad">
+        <SectionHead
+          title="Founding Partners"
+          counter="Three principals · Founded 2024"
+        />
+
+        <div className="grid grid-cols-1 border-y border-[var(--hairline)] md:grid-cols-3">
+          {operators.map((op) => (
+            <Link
+              key={op.slug}
+              href={`/operators/${op.slug}`}
+              className="flex min-h-[220px] flex-col border-b border-[var(--hairline)] py-10 md:border-b-0 md:border-r md:px-8 first:md:pl-0 last:md:border-r-0 last:md:pr-0"
+            >
+              <h3 className="mb-4 text-[clamp(1.3rem,2vw,1.75rem)] font-medium leading-tight tracking-[-0.018em] text-[var(--text)]">
+                {op.name}
+              </h3>
+
+              <p className="max-w-[30ch] font-serif text-[clamp(0.95rem,1.05vw,1.1rem)] italic leading-[1.45] text-[var(--text-strong)]">
+                {op.role}
+              </p>
+
+              <span className="mt-auto pt-8 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-3)]">
+                Profile →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </ArrivalWrapper>
+    </section>
   );
 }
