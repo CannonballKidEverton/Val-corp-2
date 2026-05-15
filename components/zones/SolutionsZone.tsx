@@ -1,72 +1,64 @@
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { ArrivalWrapper } from '@/components/primitives/ArrivalWrapper';
 import { SectionHead } from '@/components/primitives/SectionHead';
-import { VMarkIcon } from '@/components/solutions/VMarks';
-import { solutions, TOTAL_SOLUTIONS } from '@/content/solutions';
-import { vMarkHover, arrowHover } from '@/lib/motion';
-import { cn } from '@/lib/utils';
+import { solutions } from '@/content/solutions';
+
+const TOTAL_SOLUTIONS = 13;
+
+function VMark() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-7 w-7 text-[var(--text)] transition-transform duration-300 group-hover:rotate-[8deg]"
+      aria-hidden="true"
+    >
+      <path
+        d="M 6 4 L 12 20 L 18 4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        fill="none"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+      />
+    </svg>
+  );
+}
 
 export function SolutionsZone() {
   return (
-    <ArrivalWrapper as="section" className="zone-pad" id="solutions">
-      <SectionHead
-        title="Solutions"
-        counter={`${solutions.length} of ${TOTAL_SOLUTIONS}`}
-      />
+    <section id="solutions">
+      <ArrivalWrapper as="div" className="zone-pad">
+        <SectionHead
+          title="Solutions"
+          counter={`${solutions.length} of ${TOTAL_SOLUTIONS}`}
+        />
 
-      <div>
-        {solutions.map((sol) => {
-          const Tag = sol.href ? Link : 'div';
-          const props = sol.href ? { href: sol.href } : {};
-
-          return (
-            <motion.div
-              key={sol.slug}
-              initial="rest"
-              whileHover="hover"
-              animate="rest"
+        <div className="border-t border-[var(--hairline)]">
+          {solutions.map((solution) => (
+            <Link
+              key={solution.slug}
+              href={solution.hasPage ? `/solutions/${solution.slug}` : '#'}
+              className="group grid grid-cols-[64px_minmax(0,3fr)_minmax(0,7fr)_32px] items-center gap-x-8 border-b border-[var(--hairline)] py-7 text-inherit no-underline"
             >
-              {/* @ts-expect-error dynamic tag */}
-              <Tag
-                {...props}
-                className={cn(
-                  'grid items-center gap-x-[clamp(24px,4vw,56px)]',
-                  'grid-cols-[64px_minmax(0,3fr)_minmax(0,7fr)_32px]',
-                  'py-7 border-b border-hairline first:border-t',
-                  'no-underline text-inherit',
-                  sol.href ? 'cursor-pointer' : 'cursor-default'
-                )}
-              >
-                {/* V mark */}
-                <motion.span
-                  className="text-ink"
-                  variants={vMarkHover}
-                  style={{ transformOrigin: '50% 60%' }}
-                >
-                  <VMarkIcon variant={sol.vMark} />
-                </motion.span>
+              <span>
+                <VMark />
+              </span>
 
-                {/* Name */}
-                <span className="t-solution text-ink">{sol.name}</span>
+              <span className="text-[clamp(1.15rem,1.8vw,1.55rem)] font-medium uppercase tracking-[-0.01em] text-[var(--text)]">
+                {solution.name}
+              </span>
 
-                {/* Description */}
-                <span className="font-serif text-[clamp(0.95rem,1.05vw,1.05rem)] leading-relaxed text-ink-3 hidden md:block">
-                  {sol.description}
-                </span>
+              <span className="font-serif text-[clamp(0.95rem,1.05vw,1.05rem)] leading-[1.5] text-[var(--text-3)] transition-colors group-hover:text-[var(--text-2)]">
+                {solution.description}
+              </span>
 
-                {/* Arrow */}
-                <motion.span
-                  className="font-mono text-[14px] text-ink-4 text-right"
-                  variants={arrowHover}
-                >
-                  →
-                </motion.span>
-              </Tag>
-            </motion.div>
-          );
-        })}
-      </div>
-    </ArrivalWrapper>
+              <span className="text-right font-mono text-sm text-[var(--text-4)] transition-transform group-hover:translate-x-1.5 group-hover:text-[var(--text)]">
+                →
+              </span>
+            </Link>
+          ))}
+        </div>
+      </ArrivalWrapper>
+    </section>
   );
 }
