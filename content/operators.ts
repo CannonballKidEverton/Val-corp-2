@@ -1,17 +1,3 @@
-Yes — there are **more apostrophes breaking the file**, not just the first one.
-
-The easiest fix: replace the entire `content/operators.ts` file with this corrected version.
-
-In GitHub:
-
-1. Open `content/operators.ts`
-2. Click ✏️ edit
-3. Select everything
-4. Delete it
-5. Paste this in
-6. Click **Commit changes**
-
-```ts
 export interface Operator {
   slug: string;
   ref: string;
@@ -88,6 +74,3 @@ export const operators: Operator[] = [
 export function getOperatorBySlug(slug: string): Operator | undefined {
   return operators.find((op) => op.slug === slug);
 }
-```
-
-Then wait for Vercel to redeploy. This should clear that syntax error.
