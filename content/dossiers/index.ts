@@ -6,7 +6,7 @@ export interface DossierSection {
 
 export interface Dossier {
   slug: string;
-  ref: string;
+ ref: string;
   title: string;
   description: string;
   sections: DossierSection[];
@@ -44,4 +44,8 @@ export const dossiers: Dossier[] = [
 
 export function getDossierBySlug(slug: string): Dossier | undefined {
   return dossiers.find((dossier) => dossier.slug === slug);
+}
+
+export function getAllDossierSlugs(): string[] {
+  return dossiers.map((dossier) => dossier.slug);
 }
